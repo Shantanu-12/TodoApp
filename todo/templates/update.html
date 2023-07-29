@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-5">
+    <form   class="col-6 mx-auto card p-3 shadow p-3 mb-5 bg-white rounded" method="post" enctype="multipart/form-data">
+         {% csrf_token %}
+        <h1>Update Item</h1>
+        <br>
+        <div class="mb-3">
+          <label for="exampleInputDetail" class="form-label">Title</label>
+          <input type="text" value="{{updates.title}}" class="form-control" name="title" required>
+        </div>
+        <div class="mb-3">
+          <label for="exampleInputDescription" class="form-label">Description </label>
+          <textarea name="description" value="{{updates.description}}" cols="30" rows="10" required>{{updates.description}}</textarea>
+        </div>
+        <div class="mb-3">
+            <label for="exampleInputDescription" class="form-label">Date</label>
+           <input type="datetime-local" value="{{updates.dateTime}}" name="dateTime" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+    </div>
+{% endblock content %}

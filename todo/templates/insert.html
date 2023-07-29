@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-5">
+<form   class="col-6 mx-auto card p-3 shadow p-3 mb-5 bg-white rounded" method="post" enctype="multipart/form-data">
+     {% csrf_token %}
+    <h1>Add Items</h1>
+    <br>
+    <div class="mb-3">
+      <label for="exampleInputDetail" class="form-label">Title</label>
+      <input type="text" class="form-control" name="title" required>
+    </div>
+    <div class="mb-3">
+      <label for="exampleInputDescription" class="form-label">Description </label>
+      <textarea name="description" cols="30" rows="10" required></textarea>
+    </div>
+    <div class="mb-3">
+        <label for="exampleInputDescription" class="form-label">Date</label>
+       <input type="datetime-local" name="dateTime" required>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+</div>
+<div class="container mt-5">
+    <table class="table table-striped-columns shadow p-3 mb-5 bg-white rounded">
+        <thead>
+            <h1 style="text-align: center;">TODO List</h1>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Detail</th>
+              <th scope="col">Description</th>
+              <th scope="col">Date&Time</th>
+              <th scope="col">Actions</th>
+            </tr>
+          </thead>
+          {% for i in inserts %}
+          <tbody>
+            <tr>
+              <th scope="row">{{forloop.counter}}</th>
+              <td>{{i.title}}</td>
+              <td>{{i.description}}</td>
+              <td>{{i.dateTime}}</td>
+              <td>
+                <a href="/delete/{{i.id}}" class="btn btn-danger m-2">Delete</a>
+                <a href="/update/{{i.id}}" class="btn btn-secondary">Update</a>
+              </td>
+            </tr>
+          </tbody>
+          {% endfor %}
+      </table>
+</div>
+{% endblock content %}
